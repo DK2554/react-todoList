@@ -23,7 +23,8 @@ function App() {
         ) : (
           <Route path="/login" element={<LoginPage />} />
         )}
-        <Route path="/" element={<LoginPage />} />
+        <Route  path="/" element={<LoginPage />} />
+        <Route  path="/login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
