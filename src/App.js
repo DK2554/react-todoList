@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import TodoMain from "./TodoMain";
+
+import LoginPage from "./components/LoginPage";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 
 function App() {
+  const isLogin = true;
+  useEffect(() => {
+    if (sessionStorage.getItem("user_id") === null) {
+      console.log(" isLogin ?? :: ", isLogin);
+    } else {
+      isLogin = true;
+      console.log("isLogin ?? :: ", isLogin);
+    }
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {isLogin ? (
+          <Route path="/main" element={<TodoMain />} />
+        ) : (
+          <Route path="/login" element={<LoginPage />} />
+        )}
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 export default App;
